@@ -35,19 +35,24 @@ class GUI:
        self.label_message1 = Label(self.window2, text=' ')
        self.label_message1.pack(side='top', pady=20)
 
-       self.label_message2 = Label(self.window2, text=' ')
-       self.label_message2.pack(side='top', pady=20)
-
        self.button_submit = Button(self.window2, text='SUBMIT', command=self.clicked)
        self.button_submit.pack(side='top')
 
    def clicked(self):
        passget = self.entry_up1.get()
        print(f'{t.status(passget)}')
-       self.label_message1.config(text=f'{t.status(passget)}')
+       self.label_message1.config(text=f'password is {t.status(passget)}')
+       self.score = t.score(passget)
 
-       if passget != 'too weak':
+       if 'too weak' not in t.status(passget):
            site_window = Tk()
-           site_window.geometry('250x230')
+           site_window.geometry('150x150')
            site_window.resizable(False, False)
            self.window3 = site_window
+
+           nameget = self.entry_up2.get()
+           self.frame_end = Frame(self.window3)
+           self.label_end = Label(self.frame_end, text=f'Welcome {nameget}!!!')
+           self.frame_end.pack()
+           self.label_end.pack()
+
